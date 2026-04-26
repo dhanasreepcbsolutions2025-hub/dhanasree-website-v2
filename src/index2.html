@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>DhanaSree PCB Solutions – PCB Design Training</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --g:#00c875;--g2:#00a85e;--c:#0ea5e9;--dark:#07101f;--darker:#040c18;
+  --card:#0d1b2e;--border:rgba(255,255,255,0.07);--text:#b8cfe0;--muted:#6b87a0;
+  --white:#f0f6ff;--head:#e2eeff;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--dark);color:var(--text);overflow-x:hidden;line-height:1.6;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--darker);}
+::-webkit-scrollbar-thumb{background:var(--g);border-radius:2px;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 6%;height:68px;
+  background:rgba(7,16,31,0.92);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);transition:all .3s;}
+.logo-wrap{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.logo-mark{width:36px;height:36px;background:var(--g);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;}
+.logo-mark svg{width:20px;height:20px;}
+.logo-name{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;color:var(--white);}
+.logo-name span{color:var(--g);}
+.logo-tag{font-size:10px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-top:1px;}
+.nav-links{display:flex;gap:4px;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;
+  padding:6px 14px;border-radius:6px;transition:color .25s,background .25s;position:relative;}
+.nav-links a:hover{color:var(--white);}
+.nav-links a.active{color:var(--g);}
+.nav-links a .nav-ink{position:absolute;bottom:2px;left:14px;right:14px;height:2px;
+  background:var(--g);border-radius:2px;transform:scaleX(0);transform-origin:center;
+  transition:transform .3s cubic-bezier(.4,0,.2,1);}
+.nav-links a.active .nav-ink,.nav-links a:hover .nav-ink{transform:scaleX(1);}
+.nav-actions{display:flex;align-items:center;gap:12px;}
+.nav-phone{font-size:13px;color:var(--muted);font-weight:500;}
+.nav-phone strong{color:var(--g);}
+.btn-enroll{background:var(--g);color:#fff;padding:9px 22px;border-radius:6px;
+  font-weight:600;font-size:13px;text-decoration:none;transition:all .2s;border:none;cursor:pointer;
+  font-family:'Inter',sans-serif;}
+.btn-enroll:hover{background:var(--g2);transform:translateY(-1px);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;}
+.hamburger span{width:22px;height:2px;background:var(--white);display:block;transition:.3s;}
+
+/* ── HERO ── */
+#hero{
+  min-height:100vh;display:flex;align-items:center;
+  padding:100px 6% 60px;position:relative;overflow:hidden;
+}
+/* PCB background image via SVG data URI + overlays */
+.hero-bg-img{
+  position:absolute;inset:0;z-index:0;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect fill='%23061018' width='800' height='600'/%3E%3Crect x='40' y='40' width='720' height='520' rx='16' fill='%23071829' stroke='%23163040' stroke-width='1.5'/%3E%3Ccircle cx='62' cy='62' r='7' fill='none' stroke='%231a3a50' stroke-width='1.5'/%3E%3Ccircle cx='738' cy='62' r='7' fill='none' stroke='%231a3a50' stroke-width='1.5'/%3E%3Ccircle cx='62' cy='538' r='7' fill='none' stroke='%231a3a50' stroke-width='1.5'/%3E%3Ccircle cx='738' cy='538' r='7' fill='none' stroke='%231a3a50' stroke-width='1.5'/%3E%3Cpath d='M100 120 H340 V150 H660' stroke='%23004d2e' stroke-width='2.5' fill='none'/%3E%3Cpath d='M100 200 H200 V240 H500 V200 H660' stroke='%23003d5a' stroke-width='2' fill='none'/%3E%3Cpath d='M100 340 H660' stroke='%23004d2e' stroke-width='2.5' fill='none'/%3E%3Cpath d='M100 440 H260 V460 H540 V440 H660' stroke='%23003d5a' stroke-width='2' fill='none'/%3E%3Cpath d='M180 55 V545' stroke='%23004d2e' stroke-width='1.5' fill='none'/%3E%3Cpath d='M380 55 V230' stroke='%23003d5a' stroke-width='1.5' fill='none'/%3E%3Cpath d='M560 55 V545' stroke='%23004d2e' stroke-width='1.5' fill='none'/%3E%3Crect x='280' y='170' width='120' height='90' rx='4' fill='%230a1f35' stroke='%23094060' stroke-width='2'/%3E%3Ctext x='340' y='219' font-size='14' fill='%23094060' text-anchor='middle' font-family='monospace' font-weight='bold'%3EMCU%3C/text%3E%3Cline x1='258' y1='184' x2='280' y2='184' stroke='%23004d2e' stroke-width='2'/%3E%3Cline x1='258' y1='200' x2='280' y2='200' stroke='%23004d2e' stroke-width='2'/%3E%3Cline x1='258' y1='216' x2='280' y2='216' stroke='%23004d2e' stroke-width='2'/%3E%3Cline x1='258' y1='232' x2='280' y2='232' stroke='%23004d2e' stroke-width='2'/%3E%3Cline x1='400' y1='184' x2='422' y2='184' stroke='%23004d2e' stroke-width='2'/%3E%3Cline x1='400' y1='200' x2='422' y2='200' stroke='%23004d2e' stroke-width='2'/%3E%3Cline x1='400' y1='216' x2='422' y2='216' stroke='%23004d2e' stroke-width='2'/%3E%3Cline x1='400' y1='232' x2='422' y2='232' stroke='%23004d2e' stroke-width='2'/%3E%3Crect x='480' y='178' width='20' height='36' rx='2' fill='%230a1528' stroke='%23543a00' stroke-width='1.5'/%3E%3Crect x='510' y='178' width='20' height='36' rx='2' fill='%230a1528' stroke='%23543a00' stroke-width='1.5'/%3E%3Crect x='100' y='358' width='36' height='18' rx='3' fill='%230a1f35' stroke='%23094060' stroke-width='1.5'/%3E%3Crect x='148' y='358' width='36' height='18' rx='3' fill='%230a1f35' stroke='%23094060' stroke-width='1.5'/%3E%3Crect x='196' y='358' width='36' height='18' rx='3' fill='%230a1f35' stroke='%23094060' stroke-width='1.5'/%3E%3Ccircle cx='340' cy='420' r='5' fill='none' stroke='%23004d2e' stroke-width='1.5'/%3E%3Ccircle cx='370' cy='420' r='5' fill='none' stroke='%23004d2e' stroke-width='1.5'/%3E%3Ccircle cx='400' cy='420' r='5' fill='none' stroke='%23004d2e' stroke-width='1.5'/%3E%3Ccircle cx='430' cy='420' r='5' fill='none' stroke='%23004d2e' stroke-width='1.5'/%3E%3Ccircle cx='600' cy='140' r='12' fill='%230a1f35' stroke='%23004d2e' stroke-width='2'/%3E%3Ccircle cx='600' cy='140' r='6' fill='%23004d2e'/%3E%3C/svg%3E")
+    center center / cover no-repeat;
+}
+.hero-overlay{
+  position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(135deg,rgba(4,10,20,0.94) 0%,rgba(4,10,20,0.80) 50%,rgba(4,10,20,0.92) 100%);
+}
+.hero-grid-lines{
+  position:absolute;inset:0;z-index:1;
+  background-image:
+    linear-gradient(rgba(0,200,117,0.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,200,117,0.025) 1px,transparent 1px);
+  background-size:48px 48px;
+}
+.hero-glow{position:absolute;top:15%;right:8%;width:480px;height:480px;z-index:1;
+  background:radial-gradient(circle,rgba(14,165,233,0.07) 0%,transparent 70%);pointer-events:none;}
+.hero-glow2{position:absolute;bottom:8%;left:3%;width:360px;height:360px;z-index:1;
+  background:radial-gradient(circle,rgba(0,200,117,0.05) 0%,transparent 70%);pointer-events:none;}
+
+.hero-inner{position:relative;z-index:2;max-width:700px;}
+
+/* chip / badge */
+.hero-chip{display:inline-flex;align-items:center;gap:7px;
+  background:rgba(0,200,117,0.08);border:1px solid rgba(0,200,117,0.22);
+  padding:5px 14px;border-radius:100px;margin-bottom:32px;}
+.chip-dot{width:5px;height:5px;background:var(--g);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+.hero-chip span{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--g);font-weight:600;}
+
+/* headline */
+.hero-brand{font-family:'Space Grotesk',sans-serif;font-size:clamp(40px,6vw,72px);
+  font-weight:800;color:var(--head);line-height:1;letter-spacing:-1px;margin-bottom:4px;}
+.hero-brand em{font-style:normal;color:var(--g);}
+.hero-brand-sub{font-family:'Space Grotesk',sans-serif;font-size:clamp(18px,2.5vw,26px);
+  font-weight:500;color:rgba(176,207,224,0.55);letter-spacing:3px;text-transform:uppercase;
+  margin-bottom:28px;}
+
+/* description */
+.hero-sub{font-size:clamp(14px,1.6vw,17px);color:var(--muted);margin-bottom:32px;
+  max-width:560px;line-height:1.8;}
+
+/* pills */
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px;}
+.h-pill{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);
+  padding:5px 14px;border-radius:100px;font-size:12px;color:var(--text);font-weight:500;
+  transition:border-color .2s,color .2s;}
+.h-pill:hover{border-color:rgba(0,200,117,0.3);color:var(--white);}
+
+/* CTA buttons */
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px;}
+.btn-primary{background:var(--g);color:#fff;padding:13px 30px;border-radius:7px;
+  font-weight:600;font-size:14px;text-decoration:none;transition:all .2s;
+  letter-spacing:.3px;}
+.btn-primary:hover{background:var(--g2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,200,117,0.25);}
+.btn-secondary{border:1px solid rgba(255,255,255,0.12);color:var(--text);padding:13px 28px;
+  border-radius:7px;font-weight:500;font-size:14px;text-decoration:none;transition:all .2s;
+  background:rgba(255,255,255,0.03);}
+.btn-secondary:hover{border-color:rgba(255,255,255,0.25);color:var(--white);background:rgba(255,255,255,0.05);}
+
+/* contact row */
+.hero-contact-row{display:flex;gap:28px;flex-wrap:wrap;padding-top:32px;
+  border-top:1px solid rgba(255,255,255,0.07);}
+.hc-item{display:flex;align-items:center;gap:9px;text-decoration:none;}
+.hc-icon{width:32px;height:32px;border-radius:8px;background:rgba(0,200,117,0.1);
+  border:1px solid rgba(0,200,117,0.18);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.hc-icon svg{width:14px;height:14px;stroke:var(--g);fill:none;stroke-width:2;}
+.hc-label{font-size:10px;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;}
+.hc-value{font-size:13px;font-weight:600;color:var(--white);}
+
+/* floating curriculum card */
+.hero-right{position:absolute;right:5%;top:50%;transform:translateY(-50%);
+  width:min(38%,420px);z-index:3;}
+.hero-card{
+  background:rgba(9,22,40,0.85);
+  backdrop-filter:blur(24px);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:16px;padding:26px;
+  box-shadow:0 32px 64px rgba(0,0,0,0.5),0 0 0 1px rgba(0,200,117,0.06);
+  animation:floatCard 6s ease-in-out infinite;
+}
+@keyframes floatCard{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.hcard-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.module-list{list-style:none;display:flex;flex-direction:column;gap:0;}
+.module-item{display:flex;align-items:center;gap:11px;padding:10px 0;
+  border-bottom:1px solid rgba(255,255,255,0.05);}
+.module-item:last-child{border-bottom:none;}
+.m-num{width:24px;height:24px;border-radius:5px;background:rgba(0,200,117,0.1);
+  border:1px solid rgba(0,200,117,0.18);display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:700;color:var(--g);flex-shrink:0;}
+.m-text{font-size:12.5px;color:var(--text);font-weight:500;}
+.m-badge{margin-left:auto;font-size:9px;padding:2px 7px;border-radius:20px;
+  background:rgba(0,200,117,0.08);color:var(--g);border:1px solid rgba(0,200,117,0.18);flex-shrink:0;}
+
+/* ── MARQUEE ── */
+.marquee-wrap{background:rgba(0,200,117,0.06);border-top:1px solid rgba(0,200,117,0.1);
+  border-bottom:1px solid rgba(0,200,117,0.1);padding:13px 0;overflow:hidden;white-space:nowrap;}
+.marquee-track{display:inline-flex;gap:40px;animation:ticker 25s linear infinite;}
+@keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.m-item{font-size:12px;font-weight:600;color:var(--g);letter-spacing:1.5px;text-transform:uppercase;}
+.m-sep{color:rgba(0,200,117,0.3);font-size:10px;}
+
+/* ── SECTION BASE ── */
+section{padding:90px 6%;}
+.sec-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--g);
+  font-weight:600;margin-bottom:10px;}
+.sec-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(24px,3vw,36px);
+  font-weight:700;color:var(--head);margin-bottom:14px;line-height:1.2;}
+.sec-desc{font-size:15px;color:var(--muted);max-width:540px;line-height:1.75;}
+.sec-head{margin-bottom:52px;}
+.sec-head.center{text-align:center;}
+.sec-head.center .sec-desc{margin:0 auto;}
+.divider{height:1px;background:var(--border);margin:0;}
+
+/* ── ABOUT ── */
+#about{background:var(--darker);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+.about-text p{font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:28px;}
+.about-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px;}
+.acard{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;}
+.acard h4{font-size:13px;font-weight:700;color:var(--head);margin-bottom:7px;}
+.acard p{font-size:13px;color:var(--muted);line-height:1.65;}
+.about-visual{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;}
+.av-title{font-size:13px;font-weight:600;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:20px;}
+.pcb-svg{width:100%;}
+
+/* ── TOOLS ── */
+#tools{}
+.tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.tool-card{background:var(--card);border:1px solid var(--border);border-radius:14px;
+  padding:28px;transition:border-color .3s,transform .3s;cursor:default;}
+.tool-card:hover{border-color:rgba(0,200,117,0.35);transform:translateY(-4px);}
+.tool-logo{width:48px;height:48px;border-radius:10px;
+  background:rgba(255,255,255,0.04);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
+.tool-logo svg{width:26px;height:26px;}
+.tool-card h3{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:600;
+  color:var(--head);margin-bottom:8px;}
+.tool-card p{font-size:13px;color:var(--muted);line-height:1.65;}
+
+/* ── CURRICULUM ── */
+#courses{background:var(--darker);}
+.curr-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.curr-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px;}
+.curr-card-head{display:flex;align-items:center;gap:12px;margin-bottom:22px;padding-bottom:16px;border-bottom:1px solid var(--border);}
+.cc-icon{width:38px;height:38px;border-radius:9px;background:rgba(0,200,117,0.1);
+  border:1px solid rgba(0,200,117,0.2);display:flex;align-items:center;justify-content:center;}
+.cc-icon svg{width:18px;height:18px;stroke:var(--g);fill:none;stroke-width:2;}
+.curr-card-head h3{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:var(--head);}
+.curr-list{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.curr-list li{display:flex;align-items:flex-start;gap:9px;font-size:13px;color:var(--text);}
+.curr-list li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--g);
+  flex-shrink:0;margin-top:6px;}
+.curr-extra{grid-column:1/-1;background:rgba(0,200,117,0.04);border:1px solid rgba(0,200,117,0.12);
+  border-radius:14px;padding:28px;}
+.curr-extra h3{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;
+  color:var(--head);margin-bottom:10px;}
+.curr-extra p{font-size:14px;color:var(--muted);line-height:1.75;}
+.extra-tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;}
+.etag{background:rgba(255,255,255,0.04);border:1px solid var(--border);
+  padding:5px 14px;border-radius:100px;font-size:12px;color:var(--text);}
+
+/* ── WHY US ── */
+#why{}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;}
+.why-card{background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:24px;transition:border-color .3s;}
+.why-card:hover{border-color:rgba(0,200,117,0.3);}
+.wc-num{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;
+  color:rgba(0,200,117,0.2);margin-bottom:12px;line-height:1;}
+.why-card h3{font-size:14px;font-weight:700;color:var(--head);margin-bottom:8px;}
+.why-card p{font-size:13px;color:var(--muted);line-height:1.65;}
+
+/* ── CONTACT ── */
+#contact{background:var(--darker);}
+.contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:56px;align-items:start;}
+.contact-info{}
+.contact-info p{font-size:14px;color:var(--muted);line-height:1.75;margin-bottom:28px;}
+.contact-person{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px;margin-bottom:16px;}
+.cp-name{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;color:var(--head);margin-bottom:12px;}
+.cp-row{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--text);margin-bottom:8px;}
+.cp-row:last-child{margin-bottom:0;}
+.cp-row a{color:var(--text);text-decoration:none;transition:color .2s;}
+.cp-row a:hover{color:var(--white);}
+.cp-icon{width:28px;height:28px;border-radius:6px;background:rgba(0,200,117,0.1);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.cp-icon svg{width:14px;height:14px;stroke:var(--g);fill:none;stroke-width:2;}
+.contact-btns{display:flex;gap:10px;margin-top:16px;}
+.btn-wa{background:rgba(37,211,102,0.12);border:1px solid rgba(37,211,102,0.25);
+  color:#25d366;padding:10px 20px;border-radius:7px;font-size:13px;font-weight:600;
+  text-decoration:none;transition:all .2s;}
+.btn-wa:hover{background:rgba(37,211,102,0.2);}
+.btn-call{background:rgba(14,165,233,0.1);border:1px solid rgba(14,165,233,0.25);
+  color:var(--c);padding:10px 20px;border-radius:7px;font-size:13px;font-weight:600;
+  text-decoration:none;transition:all .2s;}
+.btn-call:hover{background:rgba(14,165,233,0.18);}
+.map-placeholder{background:var(--card);border:1px solid var(--border);border-radius:12px;
+  height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  margin-top:16px;color:var(--muted);font-size:13px;}
+.map-placeholder svg{width:28px;height:28px;stroke:var(--muted);fill:none;stroke-width:1.5;}
+.contact-form{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;}
+.form-title{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:600;
+  color:var(--head);margin-bottom:6px;}
+.form-sub{font-size:13px;color:var(--muted);margin-bottom:24px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fg{margin-bottom:16px;}
+.fg label{display:block;font-size:12px;font-weight:600;color:var(--muted);
+  letter-spacing:.5px;margin-bottom:7px;text-transform:uppercase;}
+.fg input,.fg select,.fg textarea{
+  width:100%;background:rgba(255,255,255,0.03);border:1px solid var(--border);
+  border-radius:8px;color:var(--white);padding:11px 14px;font-size:13px;
+  font-family:'Inter',sans-serif;outline:none;transition:border-color .3s;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:rgba(0,200,117,0.4);}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--muted);}
+.fg select option{background:#0d1b2e;}
+.fg textarea{resize:vertical;min-height:100px;}
+.form-actions{display:flex;gap:10px;margin-top:4px;}
+.btn-submit{flex:1;background:var(--g);color:#fff;padding:13px;border-radius:7px;
+  font-weight:600;font-size:14px;border:none;cursor:pointer;font-family:'Inter',sans-serif;
+  transition:all .2s;}
+.btn-submit:hover{background:var(--g2);}
+.btn-email-us{background:rgba(255,255,255,0.04);border:1px solid var(--border);
+  color:var(--text);padding:13px 20px;border-radius:7px;font-size:14px;font-weight:500;
+  text-decoration:none;transition:all .2s;display:flex;align-items:center;gap:6px;}
+.btn-email-us:hover{border-color:rgba(255,255,255,0.15);color:var(--white);}
+
+/* ── FOOTER ── */
+footer{background:var(--darker);border-top:1px solid var(--border);padding:36px 6%;}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;}
+.footer-brand .logo-name{font-size:15px;}
+.footer-contact{font-size:13px;color:var(--muted);text-align:center;}
+.footer-contact a{color:var(--muted);text-decoration:none;}
+.footer-copy{font-size:12px;color:var(--muted);text-align:right;}
+
+/* ── ANIMATIONS ── */
+.fade-up{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease;}
+.fade-up.on{opacity:1;transform:none;}
+.stagger>*{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease;}
+.stagger.on>*:nth-child(1){opacity:1;transform:none;transition-delay:.05s;}
+.stagger.on>*:nth-child(2){opacity:1;transform:none;transition-delay:.12s;}
+.stagger.on>*:nth-child(3){opacity:1;transform:none;transition-delay:.19s;}
+.stagger.on>*:nth-child(4){opacity:1;transform:none;transition-delay:.26s;}
+.stagger.on>*:nth-child(5){opacity:1;transform:none;transition-delay:.33s;}
+.stagger.on>*:nth-child(6){opacity:1;transform:none;transition-delay:.40s;}
+.stagger.on>*:nth-child(7){opacity:1;transform:none;transition-delay:.47s;}
+
+#scrollTop{position:fixed;bottom:28px;right:28px;z-index:999;width:40px;height:40px;
+  border-radius:9px;background:var(--g);border:none;cursor:pointer;
+  color:#fff;font-size:16px;font-weight:700;display:none;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(0,200,117,0.3);transition:.2s;}
+#scrollTop.show{display:flex;}
+#scrollTop:hover{background:var(--g2);}
+
+@media(max-width:1024px){.hero-right{display:none;}.about-grid{grid-template-columns:1fr;}.contact-grid{grid-template-columns:1fr;}}
+@media(max-width:768px){
+  .nav-links,.nav-actions{display:none;}
+  .hamburger{display:flex;}
+  .tools-grid{grid-template-columns:1fr;}
+  .curr-grid{grid-template-columns:1fr;}
+  .curr-extra{grid-column:1;}
+  .form-row{grid-template-columns:1fr;}
+  .footer-inner{flex-direction:column;text-align:center;}
+  .footer-copy{text-align:center;}
+}
+@media(max-width:480px){.about-cards{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="nav">
+  <a href="#" class="logo-wrap">
+    <div class="logo-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round">
+        <rect x="2" y="2" width="20" height="20" rx="3"/>
+        <line x1="8" y1="2" x2="8" y2="22"/><line x1="16" y1="2" x2="16" y2="22"/>
+        <line x1="2" y1="8" x2="8" y2="8"/><line x1="16" y1="8" x2="22" y2="8"/>
+        <line x1="2" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="22" y2="16"/>
+      </svg>
+    </div>
+    <div>
+      <div class="logo-name"><span>DHANASREE</span></div>
+      <div class="logo-tag">PCB Solutions</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#hero">Home<span class="nav-ink"></span></a></li>
+    <li><a href="#about">About<span class="nav-ink"></span></a></li>
+    <li><a href="#tools">Tools<span class="nav-ink"></span></a></li>
+    <li><a href="#courses">Courses<span class="nav-ink"></span></a></li>
+    <li><a href="#why">Why Us<span class="nav-ink"></span></a></li>
+    <li><a href="#contact">Contact<span class="nav-ink"></span></a></li>
+  </ul>
+  <div class="nav-actions">
+    <span class="nav-phone">Call <strong>9581940289</strong></span>
+    <a href="#contact" class="btn-enroll">Enroll Now</a>
+  </div>
+  <button class="hamburger" onclick="toggleNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="hero-bg-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+
+  <div class="hero-inner">
+    <div class="hero-chip"><span class="chip-dot"></span><span>PCB Design Training — Batch Enrolling</span></div>
+
+    <div class="hero-brand">Dhana<em>Sree</em></div>
+    <div class="hero-brand-sub">PCB Solutions</div>
+
+    <p class="hero-sub">PCB Design Course for Working Employees and Students — industry-oriented training with hands-on practical exposure in PCB layout and fabrication workflows.</p>
+
+    <div class="hero-pills">
+      <span class="h-pill">Beginner → Advanced</span>
+      <span class="h-pill">Live Projects</span>
+      <span class="h-pill">Placement Support</span>
+      <span class="h-pill">Small Batches</span>
+      <span class="h-pill">Flexible Timings</span>
+    </div>
+
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Enroll Now</a>
+      <a href="#contact" class="btn-secondary">Contact Us</a>
+    </div>
+
+    <div class="hero-contact-row">
+      <a href="tel:9581940289" class="hc-item">
+        <div class="hc-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5 19.79 19.79 0 01.22 2.87 2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+        <div><div class="hc-label">Call Us</div><div class="hc-value">9581940289</div></div>
+      </a>
+      <a href="mailto:dhanaseepcbsolutions2025@gmail.com" class="hc-item">
+        <div class="hc-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <div><div class="hc-label">Email Us</div><div class="hc-value">dhanaseepcbsolutions2025@gmail.com</div></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Floating curriculum card -->
+  <div class="hero-right">
+    <div class="hero-card">
+      <div class="hcard-label">Course Curriculum</div>
+      <ul class="module-list">
+        <li class="module-item"><div class="m-num">01</div><div class="m-text">Introduction to PCB Design</div></li>
+        <li class="module-item"><div class="m-num">02</div><div class="m-text">Schematic & Symbol Creation</div><span class="m-badge">Core</span></li>
+        <li class="module-item"><div class="m-num">03</div><div class="m-text">Footprint & Library Creation</div></li>
+        <li class="module-item"><div class="m-num">04</div><div class="m-text">PCB Layout & Routing</div><span class="m-badge">Core</span></li>
+        <li class="module-item"><div class="m-num">05</div><div class="m-text">Gerber & NC Drill Generation</div></li>
+        <li class="module-item"><div class="m-num">06</div><div class="m-text">Fabrication Process Overview</div></li>
+        <li class="module-item"><div class="m-num">07</div><div class="m-text">Live Project Work</div><span class="m-badge">Project</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── MARQUEE ── -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="m-item">PCB Design</span><span class="m-sep">—</span>
+    <span class="m-item">Schematic Capture</span><span class="m-sep">—</span>
+    <span class="m-item">OrCAD</span><span class="m-sep">—</span>
+    <span class="m-item">Allegro</span><span class="m-sep">—</span>
+    <span class="m-item">Altium Designer</span><span class="m-sep">—</span>
+    <span class="m-item">Gerber Generation</span><span class="m-sep">—</span>
+    <span class="m-item">Fabrication Workflow</span><span class="m-sep">—</span>
+    <span class="m-item">Placement Support</span><span class="m-sep">—</span>
+    <span class="m-item">PCB Design</span><span class="m-sep">—</span>
+    <span class="m-item">Schematic Capture</span><span class="m-sep">—</span>
+    <span class="m-item">OrCAD</span><span class="m-sep">—</span>
+    <span class="m-item">Allegro</span><span class="m-sep">—</span>
+    <span class="m-item">Altium Designer</span><span class="m-sep">—</span>
+    <span class="m-item">Gerber Generation</span><span class="m-sep">—</span>
+    <span class="m-item">Fabrication Workflow</span><span class="m-sep">—</span>
+    <span class="m-item">Placement Support</span><span class="m-sep">—</span>
+  </div>
+</div>
+
+<!-- ── ABOUT ── -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text fade-up">
+      <div class="sec-label">About Us</div>
+      <h2 class="sec-title">Industry-Focused PCB Design Training</h2>
+      <p>DhanaSree PCB Solutions provides industry-oriented PCB design training with hands-on practical exposure using industry-standard tools. We prepare students and professionals for real-world electronics and embedded design applications.</p>
+      <div class="about-cards stagger">
+        <div class="acard">
+          <h4>Who We Train</h4>
+          <p>Students, working professionals, engineers, and hobbyists looking for job-ready PCB design skills.</p>
+        </div>
+        <div class="acard">
+          <h4>What You Get</h4>
+          <p>Live sessions, practical lab exercises, project mentorship, and deliverables ready for fabrication.</p>
+        </div>
+      </div>
+    </div>
+    <div class="about-visual fade-up">
+      <div class="av-title">PCB Layout Preview</div>
+      <svg class="pcb-svg" viewBox="0 0 360 260" xmlns="http://www.w3.org/2000/svg">
+        <!-- Board outline -->
+        <rect x="10" y="10" width="340" height="240" rx="8" fill="#071829" stroke="#1a3a50" stroke-width="1.5"/>
+        <!-- Mounting holes -->
+        <circle cx="28" cy="28" r="5" fill="none" stroke="#2a4a60" stroke-width="1.5"/>
+        <circle cx="332" cy="28" r="5" fill="none" stroke="#2a4a60" stroke-width="1.5"/>
+        <circle cx="28" cy="232" r="5" fill="none" stroke="#2a4a60" stroke-width="1.5"/>
+        <circle cx="332" cy="232" r="5" fill="none" stroke="#2a4a60" stroke-width="1.5"/>
+        <!-- Traces -->
+        <path d="M50 70 H150 V90 H310" stroke="#00c875" stroke-width="1.8" fill="none" opacity=".6"/>
+        <path d="M50 130 H100 V150 H180 V130 H310" stroke="#0ea5e9" stroke-width="1.5" fill="none" opacity=".5"/>
+        <path d="M50 190 H310" stroke="#00c875" stroke-width="1.8" fill="none" opacity=".45"/>
+        <path d="M90 25 V235" stroke="#00c875" stroke-width="1.2" fill="none" opacity=".25"/>
+        <path d="M180 25 V110" stroke="#0ea5e9" stroke-width="1.2" fill="none" opacity=".3"/>
+        <path d="M270 25 V235" stroke="#00c875" stroke-width="1.2" fill="none" opacity=".25"/>
+        <!-- IC chip -->
+        <rect x="125" y="90" width="80" height="58" rx="3" fill="#0a1f35" stroke="#0ea5e9" stroke-width="1.5"/>
+        <rect x="131" y="96" width="68" height="46" rx="2" fill="#081828"/>
+        <text x="165" y="122" font-size="9" fill="#0ea5e9" text-anchor="middle" font-family="monospace" font-weight="bold">MCU</text>
+        <text x="165" y="134" font-size="7" fill="#2a6a8a" text-anchor="middle" font-family="monospace">STM32F4</text>
+        <!-- IC pins -->
+        <line x1="110" y1="100" x2="125" y2="100" stroke="#00c875" stroke-width="1.5"/>
+        <line x1="110" y1="110" x2="125" y2="110" stroke="#00c875" stroke-width="1.5"/>
+        <line x1="110" y1="120" x2="125" y2="120" stroke="#00c875" stroke-width="1.5"/>
+        <line x1="110" y1="130" x2="125" y2="130" stroke="#00c875" stroke-width="1.5"/>
+        <line x1="205" y1="100" x2="220" y2="100" stroke="#00c875" stroke-width="1.5"/>
+        <line x1="205" y1="110" x2="220" y2="110" stroke="#00c875" stroke-width="1.5"/>
+        <line x1="205" y1="120" x2="220" y2="120" stroke="#00c875" stroke-width="1.5"/>
+        <line x1="205" y1="130" x2="220" y2="130" stroke="#00c875" stroke-width="1.5"/>
+        <!-- Capacitors -->
+        <rect x="250" y="96" width="14" height="22" rx="2" fill="#0a1f35" stroke="#f59e0b" stroke-width="1.2"/>
+        <rect x="270" y="96" width="14" height="22" rx="2" fill="#0a1f35" stroke="#f59e0b" stroke-width="1.2"/>
+        <!-- Resistors -->
+        <rect x="50" y="163" width="22" height="11" rx="2" fill="#0a1f35" stroke="#0ea5e9" stroke-width="1.2"/>
+        <rect x="82" y="163" width="22" height="11" rx="2" fill="#0a1f35" stroke="#0ea5e9" stroke-width="1.2"/>
+        <rect x="114" y="163" width="22" height="11" rx="2" fill="#0a1f35" stroke="#0ea5e9" stroke-width="1.2"/>
+        <!-- Connector -->
+        <rect x="48" y="46" width="56" height="15" rx="2" fill="#0a1f35" stroke="#f97316" stroke-width="1.2"/>
+        <line x1="58" y1="46" x2="58" y2="61" stroke="#f97316" stroke-width="1"/>
+        <line x1="68" y1="46" x2="68" y2="61" stroke="#f97316" stroke-width="1"/>
+        <line x1="78" y1="46" x2="78" y2="61" stroke="#f97316" stroke-width="1"/>
+        <line x1="88" y1="46" x2="88" y2="61" stroke="#f97316" stroke-width="1"/>
+        <!-- Vias -->
+        <circle cx="148" cy="205" r="3.5" fill="none" stroke="#00c875" stroke-width="1.5"/>
+        <circle cx="165" cy="205" r="3.5" fill="none" stroke="#00c875" stroke-width="1.5"/>
+        <circle cx="182" cy="205" r="3.5" fill="none" stroke="#00c875" stroke-width="1.5"/>
+        <circle cx="199" cy="205" r="3.5" fill="none" stroke="#00c875" stroke-width="1.5"/>
+        <circle cx="148" cy="205" r="1.5" fill="#00c875" opacity=".6"/>
+        <circle cx="165" cy="205" r="1.5" fill="#00c875" opacity=".6"/>
+        <circle cx="182" cy="205" r="1.5" fill="#00c875" opacity=".6"/>
+        <circle cx="199" cy="205" r="1.5" fill="#00c875" opacity=".6"/>
+        <!-- LED -->
+        <circle cx="310" cy="70" r="7" fill="#0a1f35" stroke="#00c875" stroke-width="1.5"/>
+        <circle cx="310" cy="70" r="3.5" fill="#00c875" opacity=".7">
+          <animate attributeName="opacity" values="0.3;0.9;0.3" dur="2.5s" repeatCount="indefinite"/>
+        </circle>
+        <!-- Label -->
+        <text x="20" y="250" font-size="7" fill="#1a3a50" font-family="monospace">DhanaSree PCB Solutions © 2025</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── TOOLS ── -->
+<section id="tools">
+  <div class="sec-head center fade-up">
+    <div class="sec-label">Tools We Use</div>
+    <h2 class="sec-title">Industry Standard EDA &amp; PCB Layout Tools</h2>
+    <p class="sec-desc">Hands-on training on the same tools used by top electronics companies worldwide.</p>
+  </div>
+  <div class="tools-grid stagger">
+    <div class="tool-card">
+      <div class="tool-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#00c875" stroke-width="1.8" stroke-linecap="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/>
+        </svg>
+      </div>
+      <h3>OrCAD</h3>
+      <p>Learn OrCAD workflows for schematic capture, PCB layout, and manufacturing outputs including Gerber and NC drill file generation.</p>
+    </div>
+    <div class="tool-card">
+      <div class="tool-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#00c875" stroke-width="1.8" stroke-linecap="round">
+          <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+        </svg>
+      </div>
+      <h3>Allegro</h3>
+      <p>Learn Allegro workflows for advanced schematic capture, high-speed PCB layout, constraint management, and manufacturing outputs.</p>
+    </div>
+    <div class="tool-card">
+      <div class="tool-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#00c875" stroke-width="1.8" stroke-linecap="round">
+          <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
+        </svg>
+      </div>
+      <h3>Altium Designer</h3>
+      <p>Learn Altium Designer workflows for unified schematic capture, PCB layout, 3D visualization, and complete fabrication outputs.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── CURRICULUM ── -->
+<section id="courses">
+  <div class="sec-head fade-up">
+    <div class="sec-label">Course Curriculum</div>
+    <h2 class="sec-title">Output Driven Curriculum</h2>
+    <p class="sec-desc">Structured modules from fundamentals to fabrication-ready outputs, covering all the skills employers look for.</p>
+  </div>
+  <div class="curr-grid stagger">
+    <div class="curr-card">
+      <div class="curr-card-head">
+        <div class="cc-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>Schematic Design</h3>
+      </div>
+      <ul class="curr-list">
+        <li>Introduction to Circuit Design</li>
+        <li>Library Creation</li>
+        <li>Symbol Creation</li>
+        <li>Circuit Design &amp; Netlist Generation</li>
+      </ul>
+    </div>
+    <div class="curr-card">
+      <div class="curr-card-head">
+        <div class="cc-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg>
+        </div>
+        <h3>PCB Layout</h3>
+      </div>
+      <ul class="curr-list">
+        <li>PCB Introduction &amp; Design Rules</li>
+        <li>Footprint Library &amp; Footprint Creation</li>
+        <li>Pad Creation &amp; Component Placement</li>
+        <li>Routing — Manual &amp; Interactive</li>
+        <li>Gerber File Creation</li>
+        <li>NC Drill File Creation</li>
+        <li>Single Layer &amp; Double Layer PCB</li>
+        <li>Fabrication Process Overview</li>
+      </ul>
+    </div>
+    <div class="curr-extra">
+      <h3>Additional Modules &amp; Projects</h3>
+      <p>Hands-on projects that include designing single &amp; double layer PCBs, manufacturing-prepared Gerber sets, design-for-manufacturing (DFM) tips, and complete assembly guidance. Students leave with real deliverables they can showcase to employers.</p>
+      <div class="extra-tags">
+        <span class="etag">DFM Best Practices</span>
+        <span class="etag">Gerber Review</span>
+        <span class="etag">Assembly Guidance</span>
+        <span class="etag">Live Project</span>
+        <span class="etag">Portfolio Output</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── WHY US ── -->
+<section id="why">
+  <div class="sec-head center fade-up">
+    <div class="sec-label">Why Choose Us</div>
+    <h2 class="sec-title">Features That Set Us Apart</h2>
+    <p class="sec-desc">We built this course to bridge the gap between academic knowledge and what the industry actually needs.</p>
+  </div>
+  <div class="why-grid stagger">
+    <div class="why-card">
+      <div class="wc-num">01</div>
+      <h3>Industry-Oriented Training</h3>
+      <p>Curriculum shaped for industry needs and real-world PCB design workflows used in production environments.</p>
+    </div>
+    <div class="why-card">
+      <div class="wc-num">02</div>
+      <h3>Hands-on Practical Sessions</h3>
+      <p>Practice on real EDA tools with structured lab exercises, design challenges, and assignments.</p>
+    </div>
+    <div class="why-card">
+      <div class="wc-num">03</div>
+      <h3>Expert Faculty Support</h3>
+      <p>Guidance from experienced professionals with hands-on industry experience in PCB design and layout.</p>
+    </div>
+    <div class="why-card">
+      <div class="wc-num">04</div>
+      <h3>Real-time Project Guidance</h3>
+      <p>Project mentorship from concept to fabrication-ready outputs — you build something real by end of course.</p>
+    </div>
+    <div class="why-card">
+      <div class="wc-num">05</div>
+      <h3>Placement-Focused Approach</h3>
+      <p>Resume building, interview preparation, and placement assistance to help candidates land their first PCB role.</p>
+    </div>
+    <div class="why-card">
+      <div class="wc-num">06</div>
+      <h3>Small Batches &amp; Flexible Timings</h3>
+      <p>Limited batch sizes ensure personal attention. Weekend and weekday batches available to suit your schedule.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="contact-info fade-up">
+      <div class="sec-label">Contact Details</div>
+      <h2 class="sec-title">Get in Touch</h2>
+      <p>Reach out to enroll, ask about upcoming batches, or get a course brochure. We'll get back to you quickly.</p>
+      <div class="contact-person">
+        <div class="cp-name">B.N. Meghana</div>
+        <div class="cp-row">
+          <div class="cp-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5 19.79 19.79 0 01.22 2.87 2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <a href="tel:9581940289">9581940289</a>
+        </div>
+        <div class="cp-row">
+          <div class="cp-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <a href="mailto:dhanaseepcbsolutions2025@gmail.com">dhanaseepcbsolutions2025@gmail.com</a>
+        </div>
+        <div class="contact-btns">
+          <a href="https://wa.me/919581940289" class="btn-wa" target="_blank">WhatsApp</a>
+          <a href="tel:9581940289" class="btn-call">Call Now</a>
+        </div>
+      </div>
+      <div class="map-placeholder">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Location — Hyderabad, Telangana</span>
+      </div>
+    </div>
+    <div class="contact-form fade-up">
+      <div class="form-title">Get in Touch / Enroll</div>
+      <div class="form-sub">Fill the form and we will contact you with course details and schedules.</div>
+      <div class="form-row">
+        <div class="fg"><label>Full Name</label><input type="text" placeholder="Your name"/></div>
+        <div class="fg"><label>Phone</label><input type="tel" placeholder="9xxxxxxxxx"/></div>
+      </div>
+      <div class="fg"><label>Email</label><input type="email" placeholder="you@email.com"/></div>
+      <div class="fg">
+        <label>Select Course</label>
+        <select>
+          <option value="">Select Course</option>
+          <option>PCB Design — OrCAD</option>
+          <option>PCB Layout — Allegro</option>
+          <option>Altium Designer Full Course</option>
+        </select>
+      </div>
+      <div class="fg"><label>Message (optional)</label><textarea placeholder="Any questions or preferred batch timing…"></textarea></div>
+      <div class="form-actions">
+        <button class="btn-submit" id="submitBtn">Send Message</button>
+        <a href="mailto:dhanaseepcbsolutions2025@gmail.com" class="btn-email-us">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Email Us
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <a href="#" class="logo-wrap">
+      <div class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round">
+          <rect x="2" y="2" width="20" height="20" rx="3"/>
+          <line x1="8" y1="2" x2="8" y2="22"/><line x1="16" y1="2" x2="16" y2="22"/>
+          <line x1="2" y1="8" x2="8" y2="8"/><line x1="16" y1="8" x2="22" y2="8"/>
+          <line x1="2" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="22" y2="16"/>
+        </svg>
+      </div>
+      <div>
+        <div class="logo-name"><span>DHANASREE</span> PCB SOLUTIONS</div>
+      </div>
+    </a>
+    <div class="footer-contact">
+      <a href="mailto:dhanaseepcbsolutions2025@gmail.com">dhanaseepcbsolutions2025@gmail.com</a> &nbsp;•&nbsp;
+      <a href="tel:9581940289">9581940289</a>
+    </div>
+    <div class="footer-copy">Copyright © 2025 DhanaSree PCB Solutions<br>All rights reserved.</div>
+  </div>
+</footer>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  // Scroll reveal
+  const io = new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on');});},{threshold:0.08});
+  document.querySelectorAll('.fade-up,.stagger').forEach(el=>io.observe(el));
+
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  function updateActiveLink(){
+    let current='hero';
+    sections.forEach(s=>{
+      if(window.scrollY >= s.offsetTop - 120) current = s.id;
+    });
+    navLinks.forEach(a=>{
+      a.classList.toggle('active', a.getAttribute('href')==='#'+current);
+    });
+  }
+
+  // Nav on scroll + active tracking
+  window.addEventListener('scroll',()=>{
+    const n=document.getElementById('nav');
+    n.style.background=window.scrollY>60?'rgba(4,12,24,0.97)':'rgba(7,16,31,0.92)';
+    n.style.boxShadow=window.scrollY>60?'0 1px 0 rgba(255,255,255,0.05)':'none';
+    document.getElementById('scrollTop').classList.toggle('show',window.scrollY>400);
+    updateActiveLink();
+  });
+  updateActiveLink();
+
+  // Smooth scroll with easing
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      const t=document.querySelector(a.getAttribute('href'));
+      if(t){
+        e.preventDefault();
+        const top = t.getBoundingClientRect().top + window.scrollY - 68;
+        window.scrollTo({top, behavior:'smooth'});
+      }
+    });
+  });
+
+  // Mobile nav
+  function toggleNav(){
+    const ul=document.querySelector('.nav-links');
+    const na=document.querySelector('.nav-actions');
+    [ul,na].forEach(el=>{
+      if(!el)return;
+      el.style.display=el.style.display==='flex'?'none':'flex';
+      el.style.flexDirection='column';
+      el.style.position='absolute';
+      el.style.top='68px';el.style.left='0';el.style.right='0';
+      el.style.background='rgba(4,12,24,0.98)';
+      el.style.padding='20px 6%';
+      el.style.borderBottom='1px solid rgba(255,255,255,0.07)';
+    });
+  }
+
+  // Form submit
+  document.getElementById('submitBtn').addEventListener('click',function(){
+    const orig=this.textContent;
+    this.textContent='Message Sent!';
+    this.style.background='var(--g2)';
+    setTimeout(()=>{this.textContent=orig;this.style.background='';},3500);
+  });
+</script>
+</body>
+</html>
