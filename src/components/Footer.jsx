@@ -51,7 +51,7 @@ export default function Footer() {
             <div className="col-span-2 sm:col-span-1 space-y-6">
               <h4 className="text-[11px] font-black uppercase tracking-[0.3em] text-brandCyan">Direct Contact</h4>
               <p className="text-white/40 text-[13px] font-bold leading-relaxed tracking-wider">9581940289</p>
-              <p className="text-white/40 text-[12px] font-bold leading-relaxed break-words italic tracking-tight">dhanaseepcbsolutions2025@gmail.com</p>
+              <p className="text-white/40 text-[12px] font-bold leading-relaxed break-words italic tracking-tight">dhanasreepcbsolutions2025@gmail.com</p>
             </div>
           </div>
         </div>

@@ -14,7 +14,7 @@ export default function Navbar() {
   ]
 
   return (
-    <motion.nav 
+    <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className="fixed top-0 w-full z-50 transition-all duration-500"
@@ -22,27 +22,21 @@ export default function Navbar() {
       <div className="container py-4">
         <div className="glass rounded-[1.2rem] border border-white/50 px-6 py-2 flex items-center justify-between shadow-xl shadow-slate-950/5 bg-white/80 backdrop-blur-md">
           <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brandOrange to-[#ff916a] flex items-center justify-center text-white font-black text-xl shadow-lg shadow-brandOrange/20 text-center">
-              D
-            </div>
-            <div className="flex flex-col">
-              <span className="text-sm font-black text-brandNavy leading-tight uppercase tracking-widest">DhanaSree</span>
-              <span className="text-[10px] font-bold text-brandOrange leading-tight tracking-[0.2em] uppercase">Engineering</span>
-            </div>
+            <img src="/main-logo-no-bg.png" alt="Dhanasreepcbsolutions" className="h-10 lg:h-12 object-contain" />
           </div>
 
           <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a 
-                key={link.name} 
-                href={link.href} 
+              <a
+                key={link.name}
+                href={link.href}
                 className="text-[11px] font-black text-slate-500 hover:text-brandCyan uppercase tracking-widest transition-colors"
               >
                 {link.name}
               </a>
             ))}
-            <a 
-              href="#contact" 
+            <a
+              href="#contact"
               className="px-6 py-2.5 rounded-xl bg-brandOrange text-white text-[11px] font-black uppercase tracking-widest hover:bg-brandNavy transition-all shadow-lg shadow-brandOrange/20 active:scale-95"
             >
               Enroll Now
@@ -74,8 +68,8 @@ export default function Navbar() {
                   {link.name}
                 </a>
               ))}
-              <a 
-                href="tel:9581940289" 
+              <a
+                href="tel:9581940289"
                 onClick={() => setIsOpen(false)}
                 className="w-full py-4 mt-2 rounded-[1.2rem] bg-blue-600 text-white text-xs font-black uppercase tracking-widest text-center shadow-xl shadow-blue-600/20 active:scale-95 flex items-center justify-center gap-3"
               >

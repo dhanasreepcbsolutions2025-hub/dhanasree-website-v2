@@ -3,10 +3,10 @@ import { motion } from 'framer-motion'
 import { FiCpu, FiTarget, FiUsers, FiTool, FiCheckCircle, FiAward } from 'react-icons/fi'
 
 const FOCUS_AREAS = [
+  "PCB Design & Fabrication",
   "Embedded Systems Programming",
   "IoT Application Development",
   "Microcontroller-Based Projects",
-  "Communication Protocols",
   "Real-Time Project Implementation"
 ]
 

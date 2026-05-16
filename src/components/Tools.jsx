@@ -19,9 +19,9 @@ const CATEGORIES = [
     skills: ["UART, SPI, I2C", "CAN, Ethernet", "TCP/IP Stack"]
   },
   {
-    title: "Design & Testing",
+    title: "PCB Design Tools",
     icon: <FiServer />,
-    skills: ["PCB Design", "Prototyping", "Data Acquisition", "Validation"]
+    skills: ["Altium", "Allegro", "OrCAD", "Validation"]
   }
 ]
 

@@ -5,11 +5,10 @@ import { HiOutlineMail } from 'react-icons/hi'
 
 export default function Hero() {
   const highlights = [
-    { icon: <FiLayers className="text-brandCyan" />, text: "Industry Projects & Collaborations" },
-    { icon: <FiCpu className="text-brandOrange" />, text: "Custom Product Development" },
-    { icon: <FiWifi className="text-brandCyan" />, text: "Embedded Systems & IoT Solutions" },
-    { icon: <FiSettings className="text-brandOrange" />, text: "Project Design & Assembling" },
-    { icon: <FiBookOpen className="text-brandCyan" />, text: "Skill Development Programs" },
+    { icon: <FiLayers className="text-brandCyan" />, text: "Project Development" },
+    { icon: <FiCpu className="text-brandOrange" />, text: "Product Design" },
+    { icon: <FiSettings className="text-brandCyan" />, text: "Assembling and Testing" },
+    { icon: <FiBookOpen className="text-brandOrange" />, text: "Technical Training" },
   ]
 
   return (
@@ -26,7 +25,7 @@ export default function Hero() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brandOrange opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-brandOrange"></span>
               </span>
-              Innovation Driven Hub
+              Dhanasreepcbsolutions | PCB Designing & Freelancer Project Works & Courses
             </motion.div>
 
             <motion.h1
@@ -35,8 +34,8 @@ export default function Hero() {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="text-4xl sm:text-5xl lg:text-7xl font-black leading-[1.05] text-white tracking-tight"
             >
-              Engineering Innovation into <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brandCyan via-white to-brandOrange">Real-World Solutions</span>
+              PCB Design & <br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brandCyan via-white to-brandOrange">Embedded Solutions</span>
             </motion.h1>
 
             <motion.p
@@ -45,7 +44,7 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="mt-8 text-white/60 max-w-lg text-lg lg:text-xl leading-relaxed font-semibold"
             >
-              We specialize in custom embedded systems, product architecture, and end-to-end engineering excellence.
+              We specialize in PCB designing, freelancer project works, technical training, and comprehensive embedded systems development.
             </motion.p>
 
             <motion.div
@@ -77,7 +76,7 @@ export default function Hero() {
               
               <h3 className="text-[11px] font-black text-brandOrange mb-10 flex items-center gap-3 uppercase tracking-[0.3em]">
                 <span className="w-8 h-[3px] bg-brandOrange rounded-full"></span>
-                Key Focus Areas
+                Our Capabilities
               </h3>
 
               <div className="space-y-4">

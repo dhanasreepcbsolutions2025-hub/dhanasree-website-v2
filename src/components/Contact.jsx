@@ -66,13 +66,13 @@ export default function Contact() {
               </div>
             </a>
 
-            <a href="mailto:dhanaseepcbsolutions2025@gmail.com" className="card-premium p-5 flex items-center gap-5 hover:border-brandOrange transition-all group bg-white shadow-sm shadow-slate-900/5">
+            <a href="mailto:dhanasreepcbsolutions2025@gmail.com" className="card-premium p-5 flex items-center gap-5 hover:border-brandOrange transition-all group bg-white shadow-sm shadow-slate-900/5">
               <div className="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center text-brandNavy text-xl group-hover:bg-brandOrange group-hover:text-white transition-all shadow-sm">
                 <FiMail />
               </div>
               <div className="overflow-hidden">
                 <p className="text-[9px] text-slate-400 uppercase font-black tracking-widest mb-0.5">Email Dispatch</p>
-                <p className="text-brandNavy font-black text-[12px] truncate uppercase tracking-tight">dhanaseepcbsolutions2025@gmail.com</p>
+                <p className="text-brandNavy font-black text-[12px] truncate uppercase tracking-tight">dhanasreepcbsolutions2025@gmail.com</p>
               </div>
             </a>
           </div>
