@@ -10,13 +10,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-20 px-4">
           <div className="lg:col-span-5 space-y-8">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-brandOrange flex items-center justify-center text-white font-black text-2xl shadow-xl shadow-brandOrange/20">
-                D
-              </div>
-              <div className="flex flex-col">
-                <span className="text-base font-black leading-tight uppercase tracking-widest text-white">DhanaSree</span>
-                <span className="text-[11px] font-bold text-brandOrange leading-tight tracking-[0.3em] uppercase">Engineering Solutions</span>
-              </div>
+              <img src="/main-logo-no-bg.png" alt="Dhanasreepcbsolutions" className="h-12 lg:h-14 object-contain brightness-0 invert opacity-90" />
             </div>
             <p className="text-white/50 text-[14px] leading-relaxed max-w-sm font-medium italic">
               Empowering global industries through precision hardware architecture and innovative engineering intelligence.

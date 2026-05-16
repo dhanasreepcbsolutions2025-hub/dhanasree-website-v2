@@ -21,7 +21,7 @@ const CATEGORIES = [
   {
     title: "PCB Design Tools",
     icon: <FiServer />,
-    skills: ["Altium", "Allegro", "OrCAD", "Validation"]
+    skills: ["Altium", "Allegro", "OrCAD", "KiCad"]
   }
 ]
 
@@ -50,13 +50,13 @@ export default function Tools() {
             <div className="w-12 h-12 rounded-xl bg-brandOrange/5 flex items-center justify-center text-brandOrange text-xl mb-8 group-hover:scale-110 group-hover:bg-brandOrange group-hover:text-white transition-all shadow-sm">
               {cat.icon}
             </div>
-            
+
             <h4 className="text-brandNavy font-black text-[15px] mb-6 tracking-tight uppercase border-b border-slate-50 pb-4">{cat.title}</h4>
-            
+
             <div className="flex flex-wrap gap-2">
               {cat.skills.map((skill, sIdx) => (
-                <span 
-                  key={sIdx} 
+                <span
+                  key={sIdx}
                   className="px-3 py-1.5 rounded-lg bg-slate-50 text-slate-500 text-[11px] font-black uppercase tracking-widest border border-slate-100 hover:border-brandCyan hover:text-brandCyan transition-all cursor-default"
                 >
                   {skill}

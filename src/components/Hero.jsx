@@ -25,7 +25,7 @@ export default function Hero() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brandOrange opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-brandOrange"></span>
               </span>
-              Dhanasreepcbsolutions | PCB Designing & Freelancer Project Works & Courses
+              <span className="text-white font-black">Dhanasreepcbsolutions</span> | PCB Designing & Freelancer Project Works & Courses
             </motion.div>
 
             <motion.h1
