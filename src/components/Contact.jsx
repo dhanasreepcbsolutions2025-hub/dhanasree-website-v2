@@ -71,16 +71,18 @@ export default function Contact() {
                 <FiMail />
               </div>
               <div className="overflow-hidden">
-                <p className="text-[9px] text-slate-400 uppercase font-black tracking-widest mb-0.5">Email Dispatch</p>
-                <p className="text-brandNavy font-black text-[12px] truncate uppercase tracking-tight">dhanasreepcbsolutions2025@gmail.com</p>
+                <p className="text-[9px] text-slate-400 uppercase font-black tracking-widest mb-0.5">
+                  Email Dispatch
+                </p>
+                <p className="text-brandNavy font-black text-sm truncate tracking-tight">dhanasreepcbsolutions2025@gmail.com</p>
               </div>
             </a>
           </div>
 
-          <a 
-            href="https://wa.me/919581940289" 
-            target="_blank" 
-            rel="noreferrer" 
+          <a
+            href="https://wa.me/919581940289"
+            target="_blank"
+            rel="noreferrer"
             className="w-full py-4 rounded-xl bg-emerald-500 text-white text-[11px] font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 hover:bg-emerald-600 transition-all shadow-xl shadow-emerald-500/10 active:scale-95"
           >
             <FaWhatsapp className="text-xl" /> WhatsApp Now
@@ -95,7 +97,7 @@ export default function Contact() {
         >
           <div className="card-premium p-8 lg:p-14 bg-white shadow-2xl shadow-slate-900/5">
             <div className="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 bg-brandOrange/5 rounded-full blur-[100px]"></div>
-            
+
             <h3 className="text-xl font-black text-brandNavy mb-2 uppercase tracking-tight">Direct Inquiry</h3>
             <p className="text-slate-500 text-[13px] mb-10 font-bold italic">Have a mission-critical requirement? Dispatch a priority message below.</p>
 
@@ -137,8 +139,8 @@ export default function Contact() {
                 />
               </div>
 
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 className="w-full py-5 rounded-xl bg-brandOrange text-white text-[11px] font-black uppercase tracking-[0.25em] shadow-2xl shadow-brandOrange/20 hover:bg-brandNavy transition-all flex items-center justify-center gap-4 relative overflow-hidden group active:scale-[0.98]"
               >
                 <span className="relative z-10 flex items-center gap-3">
@@ -147,9 +149,9 @@ export default function Contact() {
               </button>
 
               {sent && (
-                <motion.div 
-                  initial={{ opacity: 0, y: 5 }} 
-                  animate={{ opacity: 1, y: 0 }} 
+                <motion.div
+                  initial={{ opacity: 0, y: 5 }}
+                  animate={{ opacity: 1, y: 0 }}
                   className="p-4 rounded-xl bg-emerald-50 border border-emerald-100 text-emerald-600 text-[12px] text-center font-black uppercase tracking-widest"
                 >
                   Inquiry Dispatched Successfully
