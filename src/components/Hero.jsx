@@ -25,7 +25,8 @@ export default function Hero() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brandOrange opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-brandOrange"></span>
               </span>
-              <span className="text-white font-black">Dhanasreepcbsolutions</span> | PCB Designing & Freelancer Project Works & Courses
+              <span className="text-white font-black"> PCB Designing & Freelancer Project Works & Courses
+              </span>
             </motion.div>
 
             <motion.h1
@@ -34,8 +35,8 @@ export default function Hero() {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="text-4xl sm:text-5xl lg:text-7xl font-black leading-[1.05] text-white tracking-tight"
             >
-              PCB Design & <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brandCyan via-white to-brandOrange">Embedded Solutions</span>
+              PCB Design & <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brandCyan via-white to-brandOrange">Hardware Solutions</span>
             </motion.h1>
 
             <motion.p
@@ -70,10 +71,10 @@ export default function Hero() {
             className="relative lg:ml-auto w-full max-w-lg"
           >
             <div className="absolute -inset-4 bg-gradient-to-tr from-brandCyan/20 to-brandOrange/20 blur-[100px] opacity-40"></div>
-            
+
             <div className="glass-dark relative p-8 lg:p-12 rounded-[2.5rem] shadow-2xl overflow-hidden bg-white/5 border border-white/10 backdrop-blur-3xl">
               <div className="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 bg-brandOrange/10 rounded-full blur-[80px]"></div>
-              
+
               <h3 className="text-[11px] font-black text-brandOrange mb-10 flex items-center gap-3 uppercase tracking-[0.3em]">
                 <span className="w-8 h-[3px] bg-brandOrange rounded-full"></span>
                 Our Capabilities
